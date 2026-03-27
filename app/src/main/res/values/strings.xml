@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">primerLabCompose</string>
+
+    <!-- TaskDetails -->
+    <string name="task_details">Task Details</string>
+    <string name="back">Back</string>
+    <string name="menu">Menu</string>
+    <string name="schedule_label">SCHEDULE / HORARIO</string>
+    <string name="due_date_label">DUE DATE / FECHA DE FIN</string>
+    <string name="sub_tasks_label">SUB-TASKS</string>
+    <string name="notes_label">NOTES</string>
+    <string name="add_sub_task">+ Add Sub-task</string>
+    <string name="mark_completed">✓ Mark as Completed</string>
+    <string name="edit">✏ Edit</string>
+    <string name="delete">🗑 Delete</string>
 </resources>

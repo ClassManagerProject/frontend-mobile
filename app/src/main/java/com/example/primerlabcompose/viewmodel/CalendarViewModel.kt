@@ -66,7 +66,7 @@ data class CalendarUiState(
     val currentMonth: MonthYear = MonthYear(month = 1, year = 2026),
     val selectedDay: SimpleDate? = SimpleDate(20, 1, 2026),
     val tasks: List<Task> = emptyList(),
-    val selectedNavItem: BottomNavItem = BottomNavItem.TASKS,
+    val selectedNavItem: BottomNavItem = BottomNavItem.SCHEDULE,
     val dotsOnDays: Set<Int> = setOf(8, 12, 15, 22, 25, 29)
 )
 
