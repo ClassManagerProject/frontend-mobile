@@ -1,0 +1,70 @@
+# ── Android ───────────────────────────────────────────────────────────────────
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# Built output
+/build/
+app/build/
+
+# Local configuration
+local.properties
+*.keystore
+*.jks
+
+# ── Gradle ────────────────────────────────────────────────────────────────────
+.gradle/
+gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# ── IntelliJ / Android Studio ─────────────────────────────────────────────────
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+captures/
+
+# ── Kotlin / Java ─────────────────────────────────────────────────────────────
+*.kotlin_module
+
+# ── OS generated ──────────────────────────────────────────────────────────────
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+
+# ── Logs y temporales ─────────────────────────────────────────────────────────
+*.log
+*.tmp
+*.temp
+
+# ── ProGuard ──────────────────────────────────────────────────────────────────
+/proguard/
+proguard-project.txt
+project.properties
+
+# ── NDK / CMake ───────────────────────────────────────────────────────────────
+obj/
+.externalNativeBuild/
+.cxx/
+cmake-build-debug/
+cmake-build-release/
+
+# ── Test results ──────────────────────────────────────────────────────────────
+test-results/
+build/reports/
