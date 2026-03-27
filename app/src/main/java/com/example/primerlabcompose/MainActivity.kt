@@ -1,5 +1,6 @@
 package com.example.primerlabcompose
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -70,12 +71,22 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun CalendarScreen(viewModel: CalendarViewModel = viewModel()) {
     val uiState by viewModel.uiState.collectAsState()
+    val context = androidx.compose.ui.platform.LocalContext.current
 
     Scaffold(
         bottomBar = {
             BottomNavigationBar(
                 selectedItem = uiState.selectedNavItem,
-                onItemSelected = { viewModel.onNavItemSelected(it) }
+                onItemSelected = { item ->
+                    viewModel.onNavItemSelected(item)
+                    if (item == BottomNavItem.TASKS) {
+                        val firstTaskId = uiState.tasks.firstOrNull()?.id ?: 1
+                        val intent = Intent(context, TaskDetailsActivity::class.java).apply {
+                            putExtra(TaskDetailsActivity.EXTRA_TASK_ID, firstTaskId)
+                        }
+                        context.startActivity(intent)
+                    }
+                }
             )
         }
     ) { paddingValues ->
@@ -231,6 +242,7 @@ fun CalendarScreen(viewModel: CalendarViewModel = viewModel()) {
         items(uiState.tasks, key = { it.id }) { task ->
             TaskItem(
                 task = task,
+                context = context,
                 onToggle = { viewModel.onTaskToggle(task.id) }
             )
             Spacer(Modifier.height(10.dp))
@@ -308,7 +320,7 @@ fun BottomNavigationBar(
 }
 
 @Composable
-fun TaskItem(task: Task, onToggle: () -> Unit) {
+fun TaskItem(task: Task, context: android.content.Context, onToggle: () -> Unit) {
     val bgColor      = if (task.isDone) GreenDone else Color.White
     val borderColor  = if (task.isDone) GreenCheck.copy(alpha = 0.4f) else Color(0xFFE2E8F0)
     val titleColor   = if (task.isDone) GreenText else Color(0xFF1E293B)
@@ -320,7 +332,14 @@ fun TaskItem(task: Task, onToggle: () -> Unit) {
             .clip(RoundedCornerShape(14.dp))
             .background(bgColor)
             .border(1.dp, borderColor, RoundedCornerShape(14.dp))
-            .padding(horizontal = 14.dp, vertical = 14.dp),
+            .padding(horizontal = 14.dp, vertical = 14.dp)
+            .clickable {
+                // Navegar a TaskDetailsActivity
+                val intent = Intent(context, TaskDetailsActivity::class.java).apply {
+                    putExtra(TaskDetailsActivity.EXTRA_TASK_ID, task.id)
+                }
+                context.startActivity(intent)
+            },
         verticalAlignment = Alignment.CenterVertically
     ) {
         // Checkbox
@@ -375,7 +394,7 @@ fun PriorityBadge(priority: Priority) {
     val (label, bg, fg) = when (priority) {
         Priority.HIGH   -> Triple("HIGH PRIORITY", Indigo100, PriorityHigh)
         Priority.MEDIUM -> Triple("MEDIUM",        Color(0xFFE0F2FE), PriorityMed)
-        Priority.LOW    -> Triple("LOW",            Color(0xFFF1F5F9), PriorityLow)
+        Priority.LOW    -> Triple("LOW",            Color(0xFFE2E8F0), Color(0xFF334155))  // Color mejorado para contraste
     }
     Box(
         modifier = Modifier
