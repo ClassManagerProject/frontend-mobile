@@ -11,16 +11,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PrimerLabCompose">
+
+        <activity
+            android:name=".TutorialActivity1"
+            android:exported="true"
+            android:theme="@style/Theme.PrimerLabCompose">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".TutorialActivity2"
+            android:exported="false"
+            android:theme="@style/Theme.PrimerLabCompose" />
+
+        <activity
+            android:name=".TutorialActivity3"
+            android:exported="false"
+            android:theme="@style/Theme.PrimerLabCompose" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.PrimerLabCompose">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!-- TaskDetails Activity -->
