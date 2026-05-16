@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PrimerLabCompose">
+
+        <!-- Única Activity: toda la navegación se gestiona con NavHost -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -18,7 +20,6 @@
             android:theme="@style/Theme.PrimerLabCompose">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
